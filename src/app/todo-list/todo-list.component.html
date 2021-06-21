@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <!-- ngModel gamoviyene local referencis magivrad imito ro reset funqcia ar mushaobda -->
+      <input class="form-control" placeholder="Enter task here" [(ngModel)]="todoInputString" />
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" (click)="saveTodo(todoInputString)">
+        Add
+      </button>
+    </div>
+  </div>
+</div>
+<div class="m-2">
+  <table class="table table-striped table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Done</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todoService.todoList">
+        <td>{{ todo.Description }}</td>
+        <td><input type="checkbox" (change)="changeDoneOrNot(todo)" [(ngModel)]="todo.Done" /></td>
+        <th><a href="#" (click)="deleteTodo(todo.ID)">Delete</a> </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
